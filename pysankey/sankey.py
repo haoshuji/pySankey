@@ -19,6 +19,12 @@ Produces simple Sankey Diagrams with matplotlib.
 from collections import defaultdict
 
 import matplotlib
+import matplotlib.font_manager as mfm
+font_path = '/Library/Fonts/simfang.ttf'
+prop = mfm.FontProperties(fname=font_path) # find this font
+
+
+# matplotlib.rcParams['font.sans-serif'] = '/Library/Fonts/simfang'
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
@@ -195,7 +201,8 @@ def sankey(left, right, leftWeight=None, rightWeight=None, colorDict=None,
             leftWidths[leftLabel]['bottom'] + 0.5 * leftWidths[leftLabel]['left'],
             leftLabel,
             {'ha': 'right', 'va': 'center'},
-            fontsize=fontsize
+            fontsize=fontsize,
+            fontproperties=prop,
         )
     for rightLabel in rightLabels:
         plt.fill_between(
@@ -209,7 +216,8 @@ def sankey(left, right, leftWeight=None, rightWeight=None, colorDict=None,
             rightWidths[rightLabel]['bottom'] + 0.5 * rightWidths[rightLabel]['right'],
             rightLabel,
             {'ha': 'left', 'va': 'center'},
-            fontsize=fontsize
+            fontsize=fontsize,
+            fontproperties=prop,
         )
 
     # Plot strips
